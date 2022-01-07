@@ -99,11 +99,18 @@ var resultElement = document.querySelector("#question h2");
 var resultTitle = document.querySelector("#save-info h1");
 var finalScore = document.querySelector("#save-info p");
 
+var highScores = [];
+var highScoreList = document.querySelector(".high-scores");
+
 //attach listeners
 var startButton = document.querySelector("#start-quiz");
 startButton.addEventListener("click", startQuiz);
 var answersDiv = document.querySelector(".answers");
 answersDiv.addEventListener("click", selectAnswer);
+var nameForm = document.querySelector("#enter-name");
+nameForm.addEventListener("submit", saveName);
+var viewScores = document.querySelector("#view-high-scores");
+viewScores.addEventListener("click", displayHighScores);
 
 
 
@@ -207,20 +214,70 @@ function displayCorrectness(isCorrect) {
 function displayResultScreen() {
 	//stop the timer
 	clearInterval(timerObject);
-	timer.style.color = time === 0 ? "red" : "rebeccapurple";
+	timer.style.color = time <= 0 ? "red" : "rebeccapurple";
 	
 	//show the thing
 	points += time;
-	resultTitle.textContent = time === 0 ? "Time's Up!" : "Quiz Complete!";
+	resultTitle.textContent = time <= 0 ? "Time's Up!" : "Quiz Complete!";
 	finalScore.textContent = `Your final score is ${points}`;
 	questionSection.style.display = "none";
+	scoresSection.style.display = "none";
 	saveInfoSection.style.display = "block";
 }
 
+function saveName() {
+	event.preventDefault();
+	
+	//get the name
+	let nameInput = document.querySelector("input[name='name']").value;
+	if (!nameInput) {nameInput = "Guest";}
+	console.log(nameInput);
+	
+	//load from local storage
+	getScores();
+	
+	//save the name
+	highScores.push({
+		name: nameInput,
+		score: points
+	});
+	console.log(highScores);
+	
+	//save to storage
+	localStorage.setItem("highScores", JSON.stringify(highScores));
+	
+	//display high scores
+	displayHighScores();
+}
 
+//high scores related
+function displayHighScores() {
+	//since this could have come from anywhere, set all the others to display: none
+	welcomeSection.style.display = "none"; 
+	questionSection.style.display = "none";
+  saveInfoSection.style.display = "none";
+	
+	//load up the scores!
+	getScores();
+	
+	//make the elements!
+	for (let i=0; i<highScores.length; i++) {
+		let item = document.createElement("li");
+		item.textContent = `${i+1}. ${highScores[i].name} - ${highScores[i].score}`;
+		highScoreList.appendChild(item);
+	}
+		
+	//display it!
+  scoresSection.style.display = "block";
+}
 
-
-
+function getScores() {
+	savedScores = localStorage.getItem("highScores");
+	if(savedScores) {
+		highScores = JSON.parse(savedScores);
+	}
+	//if there are no saved scores, the highScores will still be the default -> []
+}
 
 
 

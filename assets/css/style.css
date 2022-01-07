@@ -2,7 +2,7 @@ body {
 	padding: 0px;
 	margin: 0px;
 	background-color: mintcream;
-  font-family: verdana, trebuchet ms, arial;
+  font-family: verdana, "trebuchet ms", arial;
 }
 
 /* game */
@@ -67,6 +67,7 @@ section {
 	display: flex;
 	flex-direction: column;
 	align-items: center;
+	display: none;
 }
 
 #welcome h1 {
@@ -79,7 +80,33 @@ section {
 
 /* question */
 #question {
-	display: none;
+	/* display: none; */
+}
+
+#question button {
+	text-align: left;
+}
+
+hr {
+	margin-top: 40px;
+}
+
+.answers {
+	/* border: 1px solid red; */
+	list-style: none;
+	padding: 0;
+	width: fit-content;
+}
+
+.answers button {
+	width: 100%;
+	margin: 5px 0px;
+}
+
+h2 {
+	font-style: italic;
+	color: darkgray;
+	font-family: corsiva;
 }
 
 /* save-info */

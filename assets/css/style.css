@@ -67,7 +67,7 @@ section {
 	display: flex;
 	flex-direction: column;
 	align-items: center;
-	display: none;
+	/* display: none; */
 }
 
 #welcome h1 {
@@ -126,7 +126,7 @@ input[type=text]:focus {
 
 /* high-scores */
 #high-scores {
-	/* display:none; */
+	display:none;
 }
 
 #high-scores ul {

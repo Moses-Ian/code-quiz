@@ -2,7 +2,8 @@
 var points = 0;
 
 var timer = document.querySelector("#timer p");
-var time = 10;	//300 seconds = 5 minutes
+const _START_TIME = 300;	//300 seconds = 5 minutes
+var time = _START_TIME;
 var timerObject;
 
 var welcomeSection = document.querySelector("#welcome");
@@ -91,7 +92,7 @@ answers.push(document.querySelector("#B"));
 answers.push(document.querySelector("#C"));
 answers.push(document.querySelector("#D"));
 var correctAnswer;
-var questionId;
+var questionId = -1;
 
 var hr = document.querySelector("#question hr");
 var resultElement = document.querySelector("#question h2");
@@ -113,7 +114,8 @@ var viewScores = document.querySelector("#view-high-scores");
 viewScores.addEventListener("click", displayHighScores);
 var clearScoresButton = document.querySelector("#clear-scores");
 clearScoresButton.addEventListener("click", clearScores);
-
+var goBackButton = document.querySelector("#go-back");
+goBackButton.addEventListener("click", goBack);
 
 
 
@@ -125,14 +127,28 @@ clearScoresButton.addEventListener("click", clearScores);
 
 
 //function declarations
+function restart() {
+	points = 0;
+	time = _START_TIME;
+	timer.style.color = "black";
+	displayTime();
+	questionId = -1;
+	hr.style.display = "none";
+	resultElement.style.display = "none";
+}
+
+//welcome related
+function displayWelcome() {
+	show(0);
+}
+
 function startQuiz() {
 	//start the timer
 	displayTime();
 	timerObject = window.setInterval(countDown, 1000);
 	
 	//start the questions
-	welcomeSection.style.display = "none";
-	questionSection.style.display = "block";
+	show(1);
 	questionId = 0;
 	displayQuestion();
 }
@@ -143,6 +159,10 @@ function countDown() {
 	displayTime();
 	if (time > 0) {return;}
 	displayResultScreen();
+}
+
+function displayTime() {
+	timer.textContent = `Time: ${timeString(time)}`;	//this is bad form but it's fun
 }
 
 function timeString(t) {
@@ -160,14 +180,6 @@ function timeString(t) {
 	return result;
 }
 
-function displayTime() {
-	timer.textContent = `Time: ${timeString(time)}`;	//this is bad form but it's fun
-}
-
-function timeUp() {
-	
-}
-
 //question related
 function displayQuestion() {
 	questionTitle.textContent = questions[questionId].title;
@@ -180,6 +192,7 @@ function displayQuestion() {
 		}
 	}
 	correctAnswer = questions[questionId].correct;
+	show(1);
 }
 
 function selectAnswer(event) {
@@ -217,13 +230,14 @@ function displayResultScreen() {
 	clearInterval(timerObject);
 	timer.style.color = time <= 0 ? "red" : "rebeccapurple";
 	
+	//increment questionId so that the go back button works
+	questionId++;
+	
 	//show the thing
 	points += time;
 	resultTitle.textContent = time <= 0 ? "Time's Up!" : "Quiz Complete!";
 	finalScore.textContent = `Your final score is ${points}`;
-	questionSection.style.display = "none";
-	scoresSection.style.display = "none";
-	saveInfoSection.style.display = "block";
+	show(2);
 }
 
 function saveName() {
@@ -253,10 +267,6 @@ function saveName() {
 
 //high scores related
 function displayHighScores() {
-	//since this could have come from anywhere, set all the others to display: none
-	welcomeSection.style.display = "none"; 
-	questionSection.style.display = "none";
-  saveInfoSection.style.display = "none";
 	highScoreList.innerHTML = "";
 	
 	//load up the scores!
@@ -270,7 +280,7 @@ function displayHighScores() {
 	}
 		
 	//display it!
-  scoresSection.style.display = "block";
+  show(3);
 }
 
 function getScores() {
@@ -287,11 +297,58 @@ function clearScores() {
 	displayHighScores();
 }
 
+function goBack() {
+	//if you clicked from welcome
+	if (questionId == -1) {
+		displayWelcome();
+		return;
+	}
+	
+	//if you were on the results screen
+	if (questionId == questions.length) {
+		show(2);
+		return;
+	}
+	
+	//if you finished the quiz
+	if (questionId == questions.length+1) {
+		restart();
+		displayWelcome();
+		return;
+	}
+	
+	//if you click from questionSection
+	if (questionId >= 0 && questionId < questions.length) {
+		displayQuestion();
+		return;
+	}
+	
+	//if questionId is somehow nothing, do nothing
+}
 
-
-
-
-
+function show(index) {
+	welcomeSection.style.display = "none";
+	questionSection.style.display = "none";
+  saveInfoSection.style.display = "none";
+  scoresSection.style.display = "none";
+	
+	switch (index) {
+		case 0:
+			welcomeSection.style.display = "flex";
+			break;
+		case 1:
+			questionSection.style.display = "block";
+			break;
+		case 2:
+			saveInfoSection.style.display = "block";
+			break;
+		case 3:
+			scoresSection.style.display = "block";
+			break;
+		default:
+			break;
+	}
+}
 
 
 

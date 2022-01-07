@@ -80,7 +80,7 @@ section {
 
 /* question */
 #question {
-	/* display: none; */
+	display: none;
 }
 
 #question button {
@@ -111,7 +111,17 @@ h2 {
 
 /* save-info */
 #save-info {
-	display: none;
+	/* display: none; */
+}
+
+input[type=text] {
+	border: 2px solid rebeccapurple;
+	border-radius: 5px;
+	outline: none;
+}
+
+input[type=text]:focus {
+	border: 2px solid purple;
 }
 
 /* high-scores */

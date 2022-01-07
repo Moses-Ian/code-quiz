@@ -17,7 +17,7 @@ var questions = [
 			"",
 			""
 		],
-		correct: "b"
+		correct: "B"
 	},
 	{	//4.2.9
 		title: "What does event.preventDefault() do?",
@@ -27,7 +27,7 @@ var questions = [
 			"",
 			""
 		],
-		correct: "a"
+		correct: "A"
 	},
 	{	//4.2.9
 		title: "The browser event submit allows us to do the following:",
@@ -37,7 +37,7 @@ var questions = [
 			"Submit a form using both a button and the Enter key.",
 			""
 		],
-		correct: "c"
+		correct: "C"
 	},
 	{	//4.2.9
 		title: "How do we use JavaScript to get the information entered into a form’s input field?",
@@ -47,7 +47,7 @@ var questions = [
 			"We can select the form’s input element and use the textContent or innerHTML properties to read its data.",
 			""
 		],
-		correct: "a"
+		correct: "A"
 	},
 	{	//4.3.11
 		title: "In the DOM’s event object, what does its target property refer to?",
@@ -57,7 +57,7 @@ var questions = [
 			"",
 			""
 		],
-		correct: "a"
+		correct: "A"
 	},
 	{	//4.4.9
 		title: "If you save your array of objects to the browser’s local storage and it looks like [Object object] when you visit it in Chrome’s DevTools, what’s wrong?",
@@ -67,7 +67,7 @@ var questions = [
 			"",
 			""
 		],
-		correct: "a"
+		correct: "A"
 	}
 	// commented out so I can easily duplicate it
 	// {
@@ -88,11 +88,13 @@ answers.push(document.querySelector("#A"));
 answers.push(document.querySelector("#B"));
 answers.push(document.querySelector("#C"));
 answers.push(document.querySelector("#D"));
+var correctAnswer;
 
 //attach listeners
 var startButton = document.querySelector("#start-quiz");
 startButton.addEventListener("click", startQuiz);
-
+var answersDiv = document.querySelector(".answers");
+answersDiv.addEventListener("click", selectAnswer);
 
 
 
@@ -157,9 +159,19 @@ function displayQuestion(index) {
 			answers[i].style.display = "block";
 		}
 	}
+	correctAnswer = questions[index].correct;
 }
 
-
+function selectAnswer(event) {
+	let target = event.target;
+	if (target.id === correctAnswer) {
+		//do something
+		console.log("correct");
+	} else {
+		//do something
+		console.log("incorrect");
+	}
+}
 
 
 

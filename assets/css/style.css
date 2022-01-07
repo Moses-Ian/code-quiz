@@ -1,13 +1,26 @@
-/* body { */
-	/* padding: 0px; */
-	/* margin: 0px; */
-	/* background-color: mintcream; */
-/* } */
+body {
+	padding: 0px;
+	margin: 0px;
+	background-color: mintcream;
+}
 
-/* button { */
-	/* background-color: purple; */
-	/* color: white; */
-/* } */
+ /* buttons */
+button {
+	background-color: purple;
+	color: white;
+	border-radius: 10px;
+	box-shadow: 0;
+	border: 0;
+	padding: 10px;
+}
+
+.answer {
+	display: block;
+}
+
+button:hover {
+	background-color: rebeccapurple;
+}
 
 
 

@@ -10,48 +10,49 @@
 </head>
 
 <body>
-	<div id="view-high-scores">
-		<p>View High Scores</p>
+	<div class="game">
+		<div id="view-high-scores">
+			<p>View High Scores</p>
+		</div>
+		
+		<time id="timer">
+			<p>Time:</p>
+		</time>
+		
+		<section id="welcome">
+			<h1>Coding Quiz Challenge</h1>
+			<p>
+				Try to answer the following code-related questions within the time limit. Keep in mind that incorrect answers will penalize your score and reduce your time by ten seconds!
+			</p>
+			<button id="start-quiz">Start Quiz</button>
+		</section>
+		
+		<section id="question">
+			<h1></h1>
+			<button class="answer" id="A"></button>
+			<button class="answer" id="B"></button>
+			<button class="answer" id="C"></button>
+			<button class="answer" id="D"></button>
+			<hr>
+			<h2></h2>
+		</section>
+		
+		<section id="save-info">
+			<h1></h1>
+			<p>Your final score is</p>
+			<form id="enter-name">
+				<label for="name">Enter name:</label>
+				<input type="text" name="name" value="">
+				<button id="save-score" type="submit">Submit</button>
+			</form>
+		</section>
+		
+		<section id="high-scores">
+			<h1>High Scores</h1>
+			<button id="retake" type="submit">Go Back</button>
+			<button id="clear-scores">Clear High Scores</button>
+		</section>
 	</div>
-	
-	<time id="timer">
-		<p>Time:</p>
-	</time>
-	
-	<section id="welcome">
-		<h1>Coding Quiz Challenge</h1>
-		<p>
-			Try to answer the following code-related questions within the time limit. Keep in mind that incorrect answers will penalize your score and reduce your time by ten seconds!
-		</p>
-		<button id="start-quiz">Start Quiz</button>
-	</section>
-	
-	<section id="question">
-		<h1></h1>
-		<button class="answer" id="A"></button>
-		<button class="answer" id="B"></button>
-		<button class="answer" id="C"></button>
-		<button class="answer" id="D"></button>
-		<hr>
-		<h2></h2>
-	</section>
-	
-	<section id="save-info">
-		<h1></h1>
-		<p>Your final score is</p>
-		<form id="enter-name">
-			<label for="name">Enter name:</label>
-			<input type="text" name="name" value="">
-			<button id="save-score" type="submit">Submit</button>
-		</form>
-	</section>
-	
-	<section id="high-scores">
-		<h1>High Scores</h1>
-		<button id="retake" type="submit">Go Back</button>
-		<button id="clear-scores">Clear High Scores</button>
-	</section>
-			
 			
 	
 	<script src="./assets/js/script.js"></script>

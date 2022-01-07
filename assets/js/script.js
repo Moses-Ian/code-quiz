@@ -89,6 +89,7 @@ answers.push(document.querySelector("#B"));
 answers.push(document.querySelector("#C"));
 answers.push(document.querySelector("#D"));
 var correctAnswer;
+var questionId;
 
 //attach listeners
 var startButton = document.querySelector("#start-quiz");
@@ -116,7 +117,8 @@ function startQuiz() {
 	//start the questions
 	welcomeSection.style.display = "none";
 	questionSection.style.display = "block";
-	displayQuestion(0);
+	questionId = 0;
+	displayQuestion();
 }
 
 //timer related
@@ -149,17 +151,17 @@ function timeUp() {
 }
 
 //question related
-function displayQuestion(index) {
-	questionTitle.textContent = questions[index].title;
+function displayQuestion() {
+	questionTitle.textContent = questions[questionId].title;
 	for (let i=0; i < answers.length; i++) {
-		answers[i].textContent = questions[index].answers[i];
+		answers[i].textContent = questions[questionId].answers[i];
 		if (answers[i].textContent === "") {
 			answers[i].style.display = "none";
 		} else {
 			answers[i].style.display = "block";
 		}
 	}
-	correctAnswer = questions[index].correct;
+	correctAnswer = questions[questionId].correct;
 }
 
 function selectAnswer(event) {
@@ -170,6 +172,12 @@ function selectAnswer(event) {
 	} else {
 		//do something
 		console.log("incorrect");
+	}
+	questionId++;
+	if (questionId >= questions.length) {
+		//do something
+	} else {
+		displayQuestion();
 	}
 }
 

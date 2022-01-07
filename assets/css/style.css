@@ -2,10 +2,7 @@ body {
 	padding: 0px;
 	margin: 0px;
 	background-color: mintcream;
-}
-
-p {
-	margin: 0;
+  font-family: verdana, trebuchet ms, arial;
 }
 
 /* game */
@@ -16,7 +13,6 @@ p {
 	border-radius: 15px;
 	margin: 100px auto auto auto;
 	background-color: white;
-	padding-top: 60px;
 }
 
 /* buttons */
@@ -46,6 +42,10 @@ button:hover {
 	margin: 16px;
 }
 
+#view-high-scores p {
+	margin: 0;
+}
+
 /* timer */
 #timer {
 	position: absolute;
@@ -54,6 +54,47 @@ button:hover {
 	margin: 16px;
 }
 
+#timer p {
+	margin: 0;
+}
+
+section {
+	margin: 100px;
+}
+
+/* welcome */
+#welcome {
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+}
+
+#welcome h1 {
+	margin: 0;
+}
+
+#welcome p {
+	text-align: center;
+}
+
+/* question */
+#question {
+	display: none;
+}
+
+/* save-info */
+#save-info {
+	display: none;
+}
+
+/* high-scores */
+#high-scores {
+	display:none;
+}
+
+
+
+
 
 
 
@@ -61,6 +102,6 @@ button:hover {
 /* section { */
 	/* border: 1px solid red; */
 /* } */
-* {
-	border: 1px solid red;
-}
+/* * { */
+	/* border: 1px solid red; */
+/* } */

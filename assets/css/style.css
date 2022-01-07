@@ -111,7 +111,7 @@ h2 {
 
 /* save-info */
 #save-info {
-	/* display: none; */
+	display: none;
 }
 
 input[type=text] {
@@ -126,7 +126,13 @@ input[type=text]:focus {
 
 /* high-scores */
 #high-scores {
-	display:none;
+	/* display:none; */
+}
+
+#high-scores ul {
+	list-style: none;
+	padding: 0;
+	background-color: plum;
 }
 
 

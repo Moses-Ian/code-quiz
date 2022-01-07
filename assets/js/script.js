@@ -1,6 +1,8 @@
 //variable declarations
+var points = 0;
+
 var timer = document.querySelector("#timer p");
-var time = 300;	//300 seconds = 5 minutes
+var time = 10;	//300 seconds = 5 minutes
 var timerObject;
 
 var welcomeSection = document.querySelector("#welcome");
@@ -91,6 +93,12 @@ answers.push(document.querySelector("#D"));
 var correctAnswer;
 var questionId;
 
+var hr = document.querySelector("#question hr");
+var resultElement = document.querySelector("#question h2");
+
+var resultTitle = document.querySelector("#save-info h1");
+var finalScore = document.querySelector("#save-info p");
+
 //attach listeners
 var startButton = document.querySelector("#start-quiz");
 startButton.addEventListener("click", startQuiz);
@@ -125,12 +133,14 @@ function startQuiz() {
 function countDown() {
 	time--;
 	displayTime();
-	if (time != 0) {return;}
-	clearInterval(timerObject);
-	timeUp();
+	if (time > 0) {return;}
+	displayResultScreen();
 }
 
 function timeString(t) {
+	if (t <= 0) {
+		return "0:00";
+	}
 	let m = 0;
 	while(t >= 60) {
 		m++;
@@ -165,23 +175,47 @@ function displayQuestion() {
 }
 
 function selectAnswer(event) {
+	//get the details
 	let target = event.target;
-	if (target.id === correctAnswer) {
-		//do something
-		console.log("correct");
+	let correctness = target.id === correctAnswer;
+	
+	//tell the user he was right/wrong
+	displayCorrectness(correctness)
+	if (correctness) {
+		points += 20;
 	} else {
-		//do something
-		console.log("incorrect");
+		time -= 20;
 	}
+	
+	//show the next question
 	questionId++;
 	if (questionId >= questions.length) {
-		//do something
+		displayResultScreen();
 	} else {
 		displayQuestion();
 	}
 }
 
+function displayCorrectness(isCorrect) {
+	resultElement.textContent = isCorrect ? "Correct!" : "Wrong...";
+	
+	hr.style.display = "block";
+	resultElement.style.display = "block";
+}
 
+//save-info related
+function displayResultScreen() {
+	//stop the timer
+	clearInterval(timerObject);
+	timer.style.color = time === 0 ? "red" : "rebeccapurple";
+	
+	//show the thing
+	points += time;
+	resultTitle.textContent = time === 0 ? "Time's Up!" : "Quiz Complete!";
+	finalScore.textContent = `Your final score is ${points}`;
+	questionSection.style.display = "none";
+	saveInfoSection.style.display = "block";
+}
 
 
 

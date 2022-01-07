@@ -89,6 +89,7 @@ section {
 
 hr {
 	margin-top: 40px;
+	display: none;
 }
 
 .answers {
@@ -107,6 +108,7 @@ h2 {
 	font-style: italic;
 	color: darkgray;
 	font-family: corsiva;
+	display: none;
 }
 
 /* save-info */

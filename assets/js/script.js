@@ -230,9 +230,6 @@ function displayResultScreen() {
 	clearInterval(timerObject);
 	timer.style.color = time <= 0 ? "red" : "rebeccapurple";
 	
-	//increment questionId so that the go back button works
-	questionId++;
-	
 	//show the thing
 	points += time;
 	resultTitle.textContent = time <= 0 ? "Time's Up!" : "Quiz Complete!";
@@ -242,6 +239,9 @@ function displayResultScreen() {
 
 function saveName() {
 	event.preventDefault();
+	
+	//increment questionId so that the go back button works
+	questionId++;
 	
 	//get the name
 	let nameInput = document.querySelector("input[name='name']").value;
@@ -268,6 +268,10 @@ function saveName() {
 //high scores related
 function displayHighScores() {
 	highScoreList.innerHTML = "";
+	
+	//set the button text
+	goBackButton.textContent = questionId == questions.length+1 ? "Retake" : "Go Back";
+	
 	
 	//load up the scores!
 	getScores();

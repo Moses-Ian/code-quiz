@@ -111,7 +111,8 @@ var nameForm = document.querySelector("#enter-name");
 nameForm.addEventListener("submit", saveName);
 var viewScores = document.querySelector("#view-high-scores");
 viewScores.addEventListener("click", displayHighScores);
-
+var clearScoresButton = document.querySelector("#clear-scores");
+clearScoresButton.addEventListener("click", clearScores);
 
 
 
@@ -256,6 +257,7 @@ function displayHighScores() {
 	welcomeSection.style.display = "none"; 
 	questionSection.style.display = "none";
   saveInfoSection.style.display = "none";
+	highScoreList.innerHTML = "";
 	
 	//load up the scores!
 	getScores();
@@ -279,7 +281,11 @@ function getScores() {
 	//if there are no saved scores, the highScores will still be the default -> []
 }
 
-
+function clearScores() {
+	localStorage.removeItem("highScores");
+	highScores = [];
+	displayHighScores();
+}
 
 
 

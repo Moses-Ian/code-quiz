@@ -111,6 +111,20 @@ h2 {
 	display: none;
 }
 
+h1 code {
+	font-size: 18px;
+	background-color: #f1daf1;
+	color: #660066;
+	padding: 0 4px;
+}
+
+button code {
+	font-size: 14px;
+	background-color: #cc00cc;
+	color: #f1daf1;
+	padding: 0 4px;
+}
+
 /* save-info */
 #save-info {
 	display: none;

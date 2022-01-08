@@ -23,7 +23,7 @@ var questions = [
 		correct: "B"
 	},
 	{	//4.2.9
-		title: "What does event.preventDefault() do?",
+		title: "What does <code>event.preventDefault()</code> do?",
 		answers: [
 			"It stops the browser from reloading the page upon a form submission.",
 			"It stops the browser from allowing the form submission event to occur.",
@@ -33,7 +33,7 @@ var questions = [
 		correct: "A"
 	},
 	{	//4.2.9
-		title: "The browser event submit allows us to do the following:",
+		title: "The browser event <code>submit</code> allows us to do the following:",
 		answers: [
 			"Submit a form using a button.",
 			"Submit a form using the Enter key.",
@@ -45,15 +45,15 @@ var questions = [
 	{	//4.2.9
 		title: "How do we use JavaScript to get the information entered into a form’s input field?",
 		answers: [
-			"We can select the form’s input element and use the value property to read its data.",
-			"We can select the form itself and use the value property to read all of its data.",
-			"We can select the form’s input element and use the textContent or innerHTML properties to read its data.",
+			"We can select the form’s <code>input</code> element and use the <code>value</code> property to read its data.",
+			"We can select the form itself and use the <code>value</code> property to read all of its data.",
+			"We can select the form’s <code>input</code> element and use the <code>textContent</code> or <code>innerHTML</code> properties to read its data.",
 			""
 		],
 		correct: "A"
 	},
 	{	//4.3.11
-		title: "In the DOM’s event object, what does its target property refer to?",
+		title: "In the DOM’s <code>event</code> object, what does its <code>target</code> property refer to?",
 		answers: [
 			"It refers to the HTML element that was interacted with to dispatch the event.",
 			"It refers to the HTML element we want to affect as a result of our dispatched event.",
@@ -63,10 +63,10 @@ var questions = [
 		correct: "A"
 	},
 	{	//4.4.9
-		title: "If you save your array of objects to the browser’s local storage and it looks like [Object object] when you visit it in Chrome’s DevTools, what’s wrong?",
+		title: "If you save your array of objects to the browser’s local storage and it looks like <code>[Object object]</code> when you visit it in Chrome’s DevTools, what’s wrong?",
 		answers: [
-			"The array wasn’t stringified with JSON.stringify() before saving it in Local Storage.",
-			"The array wasn’t parsed with JSON.parse() before saving it to Local Storage.",
+			"The array wasn’t stringified with <code>JSON.stringify()</code> before saving it in Local Storage.",
+			"The array wasn’t parsed with <code>JSON.parse()</code> before saving it to Local Storage.",
 			"",
 			""
 		],
@@ -120,7 +120,9 @@ goBackButton.addEventListener("click", goBack);
 
 
 //startup code
-
+//DEBUG: so I style the code tags easily
+// questionId = 5;
+// displayQuestion();
 
 
 
@@ -186,12 +188,12 @@ function timeString(t) {
 
 //question related
 function displayQuestion() {
-	questionTitle.textContent = questions[questionId].title;
+	questionTitle.innerHTML = questions[questionId].title;
 	for (let i=0; i < answers.length; i++) {
-		answers[i].textContent = questions[questionId].answers[i];
-		if (answers[i].textContent === "") {
+		if (questions[questionId].answers[i] === "") {
 			answers[i].style.display = "none";
 		} else {
+			answers[i].innerHTML = questions[questionId].answers[i];
 			answers[i].style.display = "block";
 		}
 	}
@@ -256,7 +258,7 @@ function saveName() {
 	getScores();
 	
 	//save the name
-	highScores.push({
+	highScores = insertInOrder({
 		name: nameInput,
 		score: points
 	});
@@ -267,6 +269,23 @@ function saveName() {
 	
 	//display high scores
 	displayHighScores();
+}
+
+function insertInOrder(item) {
+	let newScores = [];
+	let i = 0;
+	//push the scores >= item
+	while(i < highScores.length && highScores[i].score >= item.score){
+		newScores.push(highScores[i++]);
+	}
+	//push item
+	newScores.push(item);
+	//push the scores < item
+	for(i; i<highScores.length; i++) {
+		newScores.push(highScores[i]);
+	}
+	//return the updated listeners
+	return newScores;
 }
 
 //high scores related

@@ -4,6 +4,10 @@
 
 This is a fun code quiz. Answer some javascript code questions and see how well you can do! It saves your scores so you can compare your scores as your knowledge grows! Contains 6 questions.
 
+## Cool Features
+
+* Stores high scores in order
+
 ## Website
 
 You can access the deployed website here:

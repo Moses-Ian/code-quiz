@@ -208,12 +208,16 @@ input[type=text]:focus {
 	
 	#enter-name input {
 		margin: 5px;
+		padding: 5px;
 	}
 	
 	#enter-name button {
 		margin: 5px;
 	}
 	
+	button:hover {
+		background-color: purple;
+	}
 }
 
 @media screen and (max-width: 576px) {

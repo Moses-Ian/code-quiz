@@ -242,7 +242,7 @@ function displayResultScreen() {
 	//show the thing
 	points += time;
 	resultTitle.textContent = time <= 0 ? "Time's Up!" : "Quiz Complete!";
-	finalScore.textContent = `Your final score is ${points}`;
+	finalScore.textContent = `Your final score is ${points}.`;
 	show(2);
 }
 

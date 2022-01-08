@@ -158,11 +158,15 @@ function countDown() {
 	time--;
 	displayTime();
 	if (time > 0) {return;}
+	questionId = questions.length;
 	displayResultScreen();
 }
 
 function displayTime() {
 	timer.textContent = `Time: ${timeString(time)}`;	//this is bad form but it's fun
+	if (time <= 10) {
+		timer.style.color = "red";
+	}
 }
 
 function timeString(t) {

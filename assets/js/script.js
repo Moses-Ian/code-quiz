@@ -103,6 +103,9 @@ var finalScore = document.querySelector("#save-info p");
 var highScores = [];
 var highScoreList = document.querySelector(".high-scores");
 
+var myName;
+var myScore;
+
 //attach listeners
 var startButton = document.querySelector("#start-quiz");
 startButton.addEventListener("click", startQuiz);
@@ -250,17 +253,18 @@ function saveName() {
 	questionId++;
 	
 	//get the name
-	let nameInput = document.querySelector("input[name='name']").value;
-	if (!nameInput) {nameInput = "Guest";}
-	console.log(nameInput);
+	myName = document.querySelector("input[name='name']").value;
+	if (!myName) {myName = "Guest";}
+	console.log(myName);
 	
 	//load from local storage
 	getScores();
 	
 	//save the name
+	myScore = points;
 	highScores = insertInOrder({
-		name: nameInput,
-		score: points
+		name: myName,
+		score: myScore
 	});
 	console.log(highScores);
 	
@@ -303,6 +307,10 @@ function displayHighScores() {
 	for (let i=0; i<highScores.length; i++) {
 		let item = document.createElement("li");
 		item.textContent = `${i+1}. ${highScores[i].name} - ${highScores[i].score}`;
+		//TODO: make one of the items special
+		if (highScores[i].name === myName && highScores[i].score === myScore) {
+			item.style.backgroundColor = "plum";
+		}
 		highScoreList.appendChild(item);
 	}
 		

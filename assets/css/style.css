@@ -148,7 +148,7 @@ input[type=text]:focus {
 #high-scores ul {
 	list-style: none;
 	padding: 0;
-	background-color: plum;
+	/* background-color: plum; */
 }
 
 .credits {

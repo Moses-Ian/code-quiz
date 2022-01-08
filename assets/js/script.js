@@ -96,6 +96,7 @@ var questionId = -1;
 
 var hr = document.querySelector("#question hr");
 var resultElement = document.querySelector("#question h2");
+var fadeObj;
 
 var resultTitle = document.querySelector("#save-info h1");
 var finalScore = document.querySelector("#save-info p");
@@ -138,8 +139,8 @@ function restart() {
 	timer.style.color = "black";
 	displayTime();
 	questionId = -1;
-	hr.style.display = "none";
-	resultElement.style.display = "none";
+	hr.style.opacity = "0%";
+	resultElement.style.opacity = "0%";
 }
 
 //welcome related
@@ -229,8 +230,19 @@ function selectAnswer(event) {
 function displayCorrectness(isCorrect) {
 	resultElement.textContent = isCorrect ? "Correct!" : "Wrong...";
 	
-	hr.style.display = "block";
-	resultElement.style.display = "block";
+	if (fadeObj) {fadeObj.clearTimeout();}	//if a fade was planned, cancel it
+	
+	hr.style.opacity = "100%";
+	resultElement.style.opacity = "100%";
+	fadeObj = setTimeout(fadeOutCorrectness, 3000);
+}
+
+function fadeOutCorrectness() {	
+	hr.style.trasition = "opacity 2s";
+	// resultElement.style.transition = "opacity 2s";
+	
+	hr.style.opacity = "0%";
+	// resultElement.style.opacity = "0%";
 }
 
 //save-info related

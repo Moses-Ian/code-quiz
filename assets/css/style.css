@@ -3,7 +3,6 @@ body {
 	margin: 0px;
 	background-color: mintcream;
   font-family: verdana, "trebuchet ms", arial;
-	border: 1px solid blue;
 }
 
 /* game */
@@ -88,13 +87,7 @@ section {
 	text-align: left;
 }
 
-hr {
-	margin-top: 40px;
-	display: none;
-}
-
 .answers {
-	/* border: 1px solid red; */
 	list-style: none;
 	padding: 0;
 	width: fit-content;
@@ -105,11 +98,16 @@ hr {
 	margin: 5px 0px;
 }
 
+hr {
+	margin-top: 40px;
+	opacity: 0%;
+}
+
 h2 {
 	font-style: italic;
 	color: darkgray;
 	font-family: corsiva;
-	display: none;
+	opacity: 0%;
 }
 
 h1 code {
@@ -149,7 +147,6 @@ input[type=text]:focus {
 #high-scores ul {
 	list-style: none;
 	padding: 0;
-	/* background-color: plum; */
 	display: flex;
 	flex-direction: column;
 	width: fit-content;

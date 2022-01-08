@@ -3,6 +3,7 @@ body {
 	margin: 0px;
 	background-color: mintcream;
   font-family: verdana, "trebuchet ms", arial;
+	border: 1px solid blue;
 }
 
 /* game */
@@ -168,6 +169,80 @@ input[type=text]:focus {
 .credits {
 	display: block;
 }
+
+/* media queries */
+@media screen and (max-width: 1200px) {
+}
+
+@media screen and (max-width: 980px) {
+	.game {
+		width: 688px;
+	}
+	
+	section {
+		margin: 80px;
+	}
+}
+
+@media screen and (max-width: 768px) {
+	.game {
+		width: 496px;
+	}
+	
+	section {
+		margin: 60px;
+	}
+	
+	.answers {
+		width: 100%;
+	}
+	
+	#enter-name {
+		display: flex;
+		flex-direction: column;
+	}
+	
+	#enter-name label {
+		margin: 5px;
+	}
+	
+	#enter-name input {
+		margin: 5px;
+	}
+	
+	#enter-name button {
+		margin: 5px;
+	}
+	
+}
+
+@media screen and (max-width: 576px) {
+	.game {
+		width: 320px;
+	}
+	
+	section {
+		margin: 60px 20px;
+	}
+	
+	h1, h2 {
+		font-size: 20px;
+	}
+	
+	h1 code {
+		font-size: 16px;
+	}
+	
+	button, p {
+		font-size: 16px;
+	}
+	
+}
+
+/* smallest reasonable size: 360px */
+
+
+
 
 
 

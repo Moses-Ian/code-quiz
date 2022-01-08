@@ -126,7 +126,7 @@ goBackButton.addEventListener("click", goBack);
 //DEBUG: so I style the code tags easily
 // questionId = 5;
 // displayQuestion();
-
+// displayHighScores();
 
 
 
@@ -306,8 +306,13 @@ function displayHighScores() {
 	//make the elements!
 	for (let i=0; i<highScores.length; i++) {
 		let item = document.createElement("li");
-		item.textContent = `${i+1}. ${highScores[i].name} - ${highScores[i].score}`;
-		//TODO: make one of the items special
+		// item.textContent = `${i+1}. ${highScores[i].name} - ${highScores[i].score}`;
+		div1 = document.createElement("div");
+		div2 = document.createElement("div");
+		div1.textContent = i+1 + ". " + highScores[i].name;
+		div2.textContent = highScores[i].score;
+		item.appendChild(div1);
+		item.appendChild(div2);
 		if (highScores[i].name === myName && highScores[i].score === myScore) {
 			item.style.backgroundColor = "plum";
 		}

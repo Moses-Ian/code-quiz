@@ -149,6 +149,20 @@ input[type=text]:focus {
 	list-style: none;
 	padding: 0;
 	/* background-color: plum; */
+	display: flex;
+	flex-direction: column;
+	width: fit-content;
+}
+
+#high-scores li {
+	width: 100%;
+	display: flex;
+	justify-content: space-between;
+}
+
+#high-scores div {
+	display: inline;
+	margin: 0 10px;
 }
 
 .credits {

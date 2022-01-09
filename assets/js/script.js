@@ -230,19 +230,21 @@ function selectAnswer(event) {
 function displayCorrectness(isCorrect) {
 	resultElement.textContent = isCorrect ? "Correct!" : "Wrong...";
 	
-	if (fadeObj) {fadeObj.clearTimeout();}	//if a fade was planned, cancel it
+	if (fadeObj) {clearTimeout(fadeObj);}	//if a fade was planned, cancel it
 	
+	hr.style.transition = "";
 	hr.style.opacity = "100%";
+	resultElement.style.transition = "";
 	resultElement.style.opacity = "100%";
+
 	fadeObj = setTimeout(fadeOutCorrectness, 3000);
 }
 
 function fadeOutCorrectness() {	
-	hr.style.trasition = "opacity 2s";
-	// resultElement.style.transition = "opacity 2s";
-	
+	hr.style.transition = "opacity 3s";
 	hr.style.opacity = "0%";
-	// resultElement.style.opacity = "0%";
+	resultElement.style.transition = "opacity 3s";
+	resultElement.style.opacity = "0%";
 }
 
 //save-info related
